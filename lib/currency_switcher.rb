@@ -99,7 +99,7 @@ module CurrencySwitcher
     end
   end
 
-  # Work out the exchange rate for a given URL. 
+  # Work out the exchange rate for a given URL.
   # Parse the response and extract the value
   #
   # Returns the Float value of exchange rate or nil
@@ -113,7 +113,8 @@ module CurrencySwitcher
     end
 
     doc = Nokogiri::HTML(body)
-    doc.css('#ctl00_M_lblToAmount').text.to_f
+    #doc.css('#ctl00_M_lblToAmount').text.to_f
+    doc.css('.result-cur2 dt span').text.to_f
   end
 
   # Create a customized URL for 'from' and 'to' currencies
@@ -130,7 +131,7 @@ module CurrencySwitcher
     CURRENCIES.keys.sort.each { |symbol| puts "#{symbol} => #{CURRENCIES[symbol]}"}
   end
 
-  private 
+  private
 
   # Check if from currency if valid
   #
