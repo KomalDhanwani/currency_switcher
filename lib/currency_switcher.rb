@@ -114,14 +114,16 @@ module CurrencySwitcher
 
     doc = Nokogiri::HTML(body)
     #doc.css('#ctl00_M_lblToAmount').text.to_f
-    doc.css('.result-cur2 dt span').text.to_f
+    #doc.css('.result-cur2 dt span').text.to_f
+    doc.css('.main-converter .main-results .to-cnt .to-rate').text.to_f
   end
 
   # Create a customized URL for 'from' and 'to' currencies
   #
   # Returns the String representing a valid URL
   def self.link
-    "#{URL}/#{from_currency.to_s.upcase}/#{to_currency.to_s.upcase}/1"
+    #"#{URL}/#{from_currency.to_s.upcase}/#{to_currency.to_s.upcase}/1"
+    "#{URL}/#{from_currency.to_s.downcase}-#{to_currency.to_s.downcase}"
   end
 
   # Print the available list of currencies
